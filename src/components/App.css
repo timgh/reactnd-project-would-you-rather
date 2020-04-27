@@ -77,6 +77,12 @@ body {
     border-radius: 25px;
     margin: 10px;
   }
+
+  .avatar-menu {
+    height: 50px;
+    border-radius: 25px;
+    margin-top: -15px;
+  }
   
   .tweet {
     width: 100%;

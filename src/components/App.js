@@ -9,6 +9,8 @@ import Leaderboard from './Leaderboard'
 import AddPoll from './AddPoll'
 import Poll from './Poll'
 import Nav from './Nav'
+import Login from './Login'
+
 
 import './App.css'
 
@@ -24,14 +26,16 @@ class App extends Component {
         <Fragment>
           <LoadingBar/>
           <div className='container'>
-            <Nav />
+            
             {this.props.loading === true
               ? null
               : <div>
+                <Nav />
+                <Route path='/login' exact component={Login}/>
                 <Route path='/' exact component={Dashboard}/>
-                <Route path='/leaderboard' component={Leaderboard}/>
-                <Route path='/questions/:id' component={Poll}/>
-                <Route path='/add' component={AddPoll}/>
+                <Route path='/leaderboard' exact component={Leaderboard}/>
+                <Route path='/questions/:id' exact component={Poll}/>
+                <Route path='/add' exact component={AddPoll}/>
               </div>}
           </div>
         </Fragment>

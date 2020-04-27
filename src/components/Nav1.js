@@ -1,45 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
 
 
 class Nav extends Component {
-
-  handleLogout = () => {
-    this.props.dispatch(setAuthedUser(null))
-    this.props.history.push('/login')
-  }
 
   render() {
     return (
       <nav className='nav'>
         <ul>
           <li>
-            <img className='avatar-menu' src={this.props.userAvatar} alt="User avatar" />
-          </li>
-          <li>
-            {this.props.userName}
-          </li>
-          <li>
             <NavLink to='/' exact activeClassName='active'>
               Home
-            </NavLink>
+          </NavLink>
           </li>
           <li>
             <NavLink to='/add' activeClassName='active'>
               New Poll
-            </NavLink>
+          </NavLink>
           </li>
           <li>
             <NavLink to='/leaderboard' activeClassName='active'>
               Leaderboard
-            </NavLink>
+          </NavLink>
           </li>
+            <img className='avatar' src={this.props.userAvatar} alt="User avatar"/>
           <li>
-            <NavLink to='/login' activeClassName='active'>
+            <NavLink to='/logout' activeClassName='active'>
               Logout
-            </NavLink>
+          </NavLink>
           </li>
         </ul>
       </nav>
@@ -51,10 +40,8 @@ class Nav extends Component {
 function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
-    userAvatar: users[authedUser].avatarURL,
-    userName: users[authedUser].name
+    userAvatar: users[authedUser].avatarURL
   }
 }
 
-export default connect(mapStateToProps)(Nav)
-//export default Nav
+export default connect(mapStateToProps)(Nav) 
