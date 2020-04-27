@@ -22,7 +22,6 @@ export default function users (state = {}, action) {
       }
     case ADD_ANSWER :
       const user = state[action.authedUser]
-      //debugger
       return {
         ...state,
         [action.authedUser]: {

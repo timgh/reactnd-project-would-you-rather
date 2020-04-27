@@ -9,7 +9,6 @@ export default function questions (state = {}, action) {
         ...action.questions,
       }
     case ADD_QUESTION :
-      console.log('ADD_QUESTION: action.question', action.question)
       return {
         ...state,
         [action.question.id]: action.question,
@@ -17,7 +16,6 @@ export default function questions (state = {}, action) {
     case ADD_ANSWER :
       const { answer, qid, authedUser } = action
       const question = state[qid]
-      //debugger
       return {
         ...state,
         [qid]: {
