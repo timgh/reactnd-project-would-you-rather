@@ -16,7 +16,7 @@ class Poll extends Component {
 
   render() {
     if (this.props.question === null) {
-      return <p>This poll does not exist</p>
+      return <p>This poll does not exist (404)</p>
     }
     const { question, authedUser, authorAvatar } = this.props
 
@@ -29,7 +29,6 @@ class Poll extends Component {
     const totalVotes = optionOneVotes + optionTwoVotes
     const optionOnePercentage = calculatePercentage(optionOneVotes, totalVotes)
     const optionTwoPercentage = calculatePercentage(optionTwoVotes, totalVotes)
-    //const userVote = users[authUser].answers[question.id]
 
     if (answered) {
       return (

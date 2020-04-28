@@ -1,25 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { setAuthedUser } from '../actions/authedUser'
-
+import { ANONYMOUS_ID } from '../actions/shared'
 
 class Nav extends Component {
 
-  handleLogout = () => {
-    this.props.dispatch(setAuthedUser(null))
-    this.props.history.push('/login')
-  }
-
   render() {
+
+    const AuthButton = withRouter(({ history }) => (
+      this.props.authedUser !== ANONYMOUS_ID
+        ? <button className='btn-logout' onClick={() => {
+              this.props.dispatch(setAuthedUser(ANONYMOUS_ID))
+              history.push('/login')
+            }}>
+            Logout
+          </button>
+        : null
+    ))
+
     return (
       <nav className='nav'>
         <ul>
+          {this.props.authedUser !== ANONYMOUS_ID ? (
+            <li>
+              <img className='avatar-menu' src={this.props.userAvatar} alt="User avatar" />
+            </li>
+          ) : null}
           <li>
-            <img className='avatar-menu' src={this.props.userAvatar} alt="User avatar" />
+            <div className='username'>
+              {this.props.userName}
+             </div> 
           </li>
           <li>
-            {this.props.userName}
+            <AuthButton/>
           </li>
           <li>
             <NavLink to='/' exact activeClassName='active'>
@@ -36,11 +50,6 @@ class Nav extends Component {
               Leaderboard
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/login' activeClassName='active'>
-              Logout
-            </NavLink>
-          </li>
         </ul>
       </nav>
     )
@@ -51,10 +60,9 @@ class Nav extends Component {
 function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
-    userAvatar: users[authedUser].avatarURL,
-    userName: users[authedUser].name
+    userAvatar: authedUser !== ANONYMOUS_ID ? users[authedUser].avatarURL : "",
+    userName:   authedUser !== ANONYMOUS_ID ? users[authedUser].name : "Not logged in"
   }
 }
 
 export default connect(mapStateToProps)(Nav)
-//export default Nav

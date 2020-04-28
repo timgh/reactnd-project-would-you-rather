@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-
 import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import Leaderboard from './Leaderboard'
@@ -10,8 +9,8 @@ import AddPoll from './AddPoll'
 import Poll from './Poll'
 import Nav from './Nav'
 import Login from './Login'
-
-
+import PrivateRoute from './PrivateRoute'
+import { ANONYMOUS_ID } from '../actions/shared'
 import './App.css'
 
 class App extends Component {
@@ -20,22 +19,25 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
 
+  isAuthenticated = () => {
+    return this.props.authedUser !== ANONYMOUS_ID
+  }
+
   render() {
     return (
       <Router>
         <Fragment>
           <LoadingBar/>
-          <div className='container'>
-            
+          <div className='container'>    
             {this.props.loading === true
               ? null
               : <div>
                 <Nav />
                 <Route path='/login' exact component={Login}/>
-                <Route path='/' exact component={Dashboard}/>
-                <Route path='/leaderboard' exact component={Leaderboard}/>
-                <Route path='/questions/:id' exact component={Poll}/>
-                <Route path='/add' exact component={AddPoll}/>
+                <PrivateRoute path='/' exact component={Dashboard} isAuthenticated={this.isAuthenticated}/>
+                <PrivateRoute path='/leaderboard' exact component={Leaderboard} isAuthenticated={this.isAuthenticated}/>
+                <PrivateRoute path='/questions/:id' exact component={Poll} isAuthenticated={this.isAuthenticated}/>
+                <PrivateRoute path='/add' exact component={AddPoll} isAuthenticated={this.isAuthenticated} />
               </div>}
           </div>
         </Fragment>
@@ -46,6 +48,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
+    authedUser,
     loading: authedUser === null
   }
 }

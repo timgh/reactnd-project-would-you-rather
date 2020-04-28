@@ -35,12 +35,13 @@ class Dashboard extends Component {
               Answered
           </button>
         </div>
+        <h2>Would You rather....?</h2>
 
         <ul className='dashboard-list'>
           {list.map((question) => (
             <li key={question.id}>
               <Link to={`questions/${question.id}`}>
-                {question.optionOne.text}
+                '{question.optionOne.text}' <i>or</i> '{question.optionTwo.text}'
               </Link>
             </li>
           ))}

@@ -21,7 +21,6 @@ body {
   }
   
   .btn {
-    /*text-transform: uppercase; */
     margin: 20px auto;
     padding: 10px;
     border: 1px solid rgba(0,0,0,.29);
@@ -75,100 +74,50 @@ body {
   .avatar {
     height: 50px;
     border-radius: 25px;
-    margin: 10px;
+    /* margin: 10px; */
   }
 
   .avatar-menu {
-    height: 50px;
-    border-radius: 25px;
-    margin-top: -15px;
+    height: 30px;
+    border-radius: 15px;
+    margin-top: -6px; 
   }
-  
-  .tweet {
-    width: 100%;
-    max-width: 590px;
-    padding: 10px;
-    display: flex;
-    margin: 0 auto;
-    border: 1px solid #dad7d7;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .tweet-info {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Hacky but less typing in the video */
-  .tweet-info > div > span:first-child {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  .tweet-info > div > span:nth-child(2) {
-    color: #969696;
+
+  .dashboard-switch {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
   }
-  .tweet-info > div > div {
-    color: #969696;
-    font-size: 15px;
-  }
-  .tweet-info > div > p {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  .tweet-icons {
-    display: flex;
-    align-items: center;
-  }
-  .tweet-icons > span {
-    color: #969696;
-    margin: 0 15px 0 5px;
-    font-size: 18px !important;
-  }
-  .tweet-icon {
-    font-size: 27px;
-    color: #697784;
-  }
-  .tweet-icon:hover {
-    color: #00b5d6;
-    cursor: pointer;
-  }
-  .replying-to {
+  
+  .dashboard-switch button {
     border: none;
     background: transparent;
-    margin: 0;
-    padding: 0;
-    color: #969696;
-    cursor: pointer;
+    font-size: 16px;
   }
-  
-  .heart-button {
-    background: transparent;
+
+  .btn-logout {
     border: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    cursor: pointer;
+    /*cursor: grab; */
   }
-  
-  .new-tweet {
-    width: 100%;
-    max-width: 590px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+
+  .username {
+    padding-top: 0px;
+    margin: 0px;
   }
   
   .textarea {
     border-radius: 4px;
     border: 1px solid #dad7d7;
     padding: 10px;
-    font-size: 15px;
+    font-size: 16px;
     height: 50px;
     width: 50%;
   }
   
-  .tweet-length {
-    text-align: right;
-    margin-top: 10px;
-    font-size: 20px;
-    color: #C3392A;
-  }
+  
